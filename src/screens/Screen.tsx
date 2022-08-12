@@ -10,7 +10,7 @@ import {
   Text,
 } from 'react-native';
 import Animated from 'react-native-reanimated';
-import {Coin} from './Coin';
+import {Coin} from '../components/Coin';
 import coin from '../assets/icons/coin.png';
 import reset from '../assets/icons/reset.png';
 import {useScreen} from '../hooks/useScreen';
@@ -31,7 +31,7 @@ export const Screen = () => {
     setIsAnimateActive,
     onClick,
     onReset,
-    setCoordinatesHandler,
+    onLayoutImg,
   } = useScreen();
 
   const renderCoins = () =>
@@ -51,17 +51,7 @@ export const Screen = () => {
       <ScrollView>
         <View style={styles.header}>
           <View style={styles.sumContainer}>
-            <View
-              ref={iconViewRef}
-              onLayout={() => {
-                if (iconViewRef.current) {
-                  iconViewRef.current.measure(
-                    (x, y, width, height, pageX, pageY) => {
-                      setCoordinatesHandler(pageX, pageY);
-                    },
-                  );
-                }
-              }}>
+            <View ref={iconViewRef} onLayout={onLayoutImg}>
               <Image source={coin} style={styles.img} />
             </View>
             <AnimatedTextInput
@@ -71,7 +61,7 @@ export const Screen = () => {
             />
           </View>
         </View>
-        <View style={{height: 400}} />
+        <View style={styles.emptyBlock} />
         <View style={styles.block}>
           <View style={styles.blockContent}>
             <View style={styles.scoreContainer}>
@@ -87,7 +77,6 @@ export const Screen = () => {
               <Image source={reset} style={styles.img} />
             </TouchableOpacity>
           </View>
-
           <TouchableOpacity style={styles.button} onPress={onClick}>
             <Text style={styles.buttonText}>BUTTON</Text>
           </TouchableOpacity>
@@ -124,6 +113,9 @@ const styles = StyleSheet.create({
     minWidth: 50,
     textAlign: 'right',
     padding: 0,
+  },
+  emptyBlock: {
+    height: 400,
   },
   block: {
     borderColor: 'white',

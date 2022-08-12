@@ -79,6 +79,14 @@ export const useScreen = () => {
     setCoordinates({x: pageX, y: pageY});
   };
 
+  const onLayoutImg = () => {
+    if (iconViewRef.current) {
+      iconViewRef.current.measure((x, y, width, height, pageX, pageY) => {
+        setCoordinatesHandler(pageX, pageY);
+      });
+    }
+  };
+
   return {
     isAnimateActive,
     score,
@@ -92,6 +100,6 @@ export const useScreen = () => {
     setIsAnimateActive,
     onClick,
     onReset,
-    setCoordinatesHandler,
+    onLayoutImg,
   };
 };

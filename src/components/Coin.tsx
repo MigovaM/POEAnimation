@@ -18,19 +18,12 @@ type CoinProps = {
 };
 
 export const Coin = (props: CoinProps) => {
-  const {index, imageRef, coinCoordinate, coinStyle, setCoinCoordinate} =
-    useCoin(props);
+  const {index, imageRef, coinStyle, onLayoutImg} = useCoin(props);
 
   return (
     <Animated.Image
       ref={imageRef}
-      onLayout={() => {
-        if (imageRef.current && !coinCoordinate) {
-          imageRef.current.measure((x, y, width, height, pageX, pageY) => {
-            setCoinCoordinate({x: pageX, y: pageY});
-          });
-        }
-      }}
+      onLayout={onLayoutImg}
       source={coin}
       style={[styles.coin, coinStyle, {zIndex: 20 - index}]}
     />

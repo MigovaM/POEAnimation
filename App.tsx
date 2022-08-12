@@ -1,5 +1,5 @@
 import React from 'react';
-import {Screen} from './src/components/Screen';
+import {Screen} from './src/screens/Screen';
 
 const App = () => {
   return <Screen />;

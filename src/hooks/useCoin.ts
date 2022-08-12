@@ -69,11 +69,18 @@ export const useCoin = (props: useCoinProps) => {
     };
   }, [coordinates.y]);
 
+  const onLayoutImg = () => {
+    if (imageRef.current && !coinCoordinate) {
+      imageRef.current.measure((x, y, width, height, pageX, pageY) => {
+        setCoinCoordinate({x: pageX, y: pageY});
+      });
+    }
+  };
+
   return {
     index,
     imageRef,
-    coinCoordinate,
     coinStyle,
-    setCoinCoordinate,
+    onLayoutImg,
   };
 };
