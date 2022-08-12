@@ -35,7 +35,7 @@ export const useScreen = () => {
   };
 
   const sumStyle = useAnimatedStyle(() => {
-    const fontSize = interpolate(animatedActive, [0, 1], [22, 26]);
+    const fontSize = interpolate(animatedActive, [0, 1], [16, 20]);
 
     return {
       fontSize: withTiming(fontSize, {duration: animatedActive ? 800 : 300}),

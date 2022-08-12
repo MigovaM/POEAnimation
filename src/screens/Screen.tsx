@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     fontSize: 24,
     color: 'white',
-    minWidth: 50,
+    minWidth: 35,
     textAlign: 'right',
     padding: 0,
   },
