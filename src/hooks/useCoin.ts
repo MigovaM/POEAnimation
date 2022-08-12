@@ -8,6 +8,7 @@ import {
   withTiming,
 } from 'react-native-reanimated';
 import Animated from 'react-native-reanimated';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 type Coordinates = {
   x: number;
@@ -28,6 +29,7 @@ export const useCoin = (props: useCoinProps) => {
   const iconSize = useSharedValue<number>(30);
   const iconTransition = useSharedValue<number>(0);
   const imageRef = useRef<Animated.Image>(null);
+  const {top} = useSafeAreaInsets();
 
   useEffect(() => {
     iconSize.value = withSpring(60, {damping: 100});
@@ -61,7 +63,7 @@ export const useCoin = (props: useCoinProps) => {
           translateY: interpolate(
             iconTransition.value,
             [0, 1],
-            [0, coordinates.y - (coinCoordinate?.y || 0)],
+            [0, coordinates.y - (coinCoordinate?.y || 0) + top],
             Extrapolation.CLAMP,
           ),
         },

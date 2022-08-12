@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   Image,
-  SafeAreaView,
   ScrollView,
   StyleSheet,
   TextInput,
@@ -10,6 +9,7 @@ import {
   Text,
 } from 'react-native';
 import Animated from 'react-native-reanimated';
+import {SafeAreaView} from 'react-native-safe-area-context';
 import {Coin} from '../components/Coin';
 import coin from '../assets/icons/coin.png';
 import reset from '../assets/icons/reset.png';
